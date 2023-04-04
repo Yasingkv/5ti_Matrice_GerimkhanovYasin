@@ -8,19 +8,23 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\ACER\\.nuget\\packages\\": {}
+    "C:\\Users\\200460.asty-moulin\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\CodageApplicationTraitementMatrices\\CodageApplicationTraitementMatrices\\CodageApplicationTraitementMatrices\\CodageApplicationTraitementMatrices.csproj",
+      "projectUniqueName": "H:\\yasinMatrice\\yasinMatrice\\CodageApplicationTraitementMatrices\\CodageApplicationTraitementMatrices\\CodageApplicationTraitementMatrices.csproj",
       "projectName": "CodageApplicationTraitementMatrices",
-      "projectPath": "C:\\CodageApplicationTraitementMatrices\\CodageApplicationTraitementMatrices\\CodageApplicationTraitementMatrices\\CodageApplicationTraitementMatrices.csproj",
-      "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
-      "outputPath": "C:\\CodageApplicationTraitementMatrices\\CodageApplicationTraitementMatrices\\CodageApplicationTraitementMatrices\\obj\\",
+      "projectPath": "H:\\yasinMatrice\\yasinMatrice\\CodageApplicationTraitementMatrices\\CodageApplicationTraitementMatrices\\CodageApplicationTraitementMatrices.csproj",
+      "packagesPath": "C:\\Users\\200460.asty-moulin\\.nuget\\packages\\",
+      "outputPath": "H:\\yasinMatrice\\yasinMatrice\\CodageApplicationTraitementMatrices\\CodageApplicationTraitementMatrices\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\200460.asty-moulin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.412\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.409\\RuntimeIdentifierGraph.json"
       }
     }
   }

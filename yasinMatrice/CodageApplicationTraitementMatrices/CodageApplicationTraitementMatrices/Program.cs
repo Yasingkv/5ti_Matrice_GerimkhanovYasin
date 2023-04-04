@@ -1,84 +1,44 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace CodageApplicationTraitementMatrices
 {
-    public struct outils
+    class Program
     {
-
-        public void LireReel(string question, out int n)
+        static void Main(string[] args)
         {
-            string nUser;
-            Console.Write(question);
-            nUser = Console.ReadLine();
-            while (!int.TryParse(nUser, out n))
-            {
-                Console.WriteLine("Attention ! vous devez taper un nombre réel !");
-                nUser = Console.ReadLine();
-            }
-        }
-
-        public void affichage(int[] tableau, out string aff)
-        {
-            aff = "";
-            for (int i = 0; i < tableau.Length; i++)
-            {
-                aff = aff + tableau[i] + "|";
-            }
-        }
-
-        public void creationAleatoire(int nombre, int max, int min, out int[] tableau)
-        {
-            tableau = new int[nombre];
-            Random alea = new Random();
-            for (int i = 0; i < tableau.Length; i++)
-            {
-                tableau[i] = alea.Next(min, max + 1);
-            }
-        }
-        public void Generation_Tableau(out int[,] grille)
-        {
+            outils mesOutils = new outils();
+            int choix;
             int ligne = 0;
             int colonne = 0;
-            grille = new int[ligne, colonne];
-            for (ligne = 0; ligne < grille.GetLength(0)-1; ligne++)
+            int[,] grille;
+            string stringTab;
+            int nbligne;
+            int nbcolonne;
+            do
             {
-                for (colonne = 0; colonne < grille.GetLength(1)-1; colonne++)
-                {
-                    grille[ligne, colonne] = alea(0, 20);
-                }
-            }
-        }
+                mesOutils.LireReel("quel matrices choississez-vous ? \n   1 = generation_tableau\n   2 = concatenation \n   3 =Addition_Matrices \n  4 = multiplication \n", out choix);
 
-        public void String_Tableau(int[,] grille, out string stringTab)
-        {
-            stringTab = "";
-            for (int ligne = 0; ligne < grille.GetLength(0)-1; ligne++)
-            {
-                for (int colonne = 0; colonne < grille.GetLength(1)-1; colonne++)
+                if (choix == 1)
                 {
-                    stringTab += grille[ligne, colonne] + "|";
+                    mesOutils.LireReel("ligne", out nbligne);
+                    mesOutils.LireReel("colonne", out nbcolonne);
+                    mesOutils.Generation_Tableau(out grille, nbligne, nbcolonne );
+                    mesOutils.String_Tableau( grille, out stringTab);
+                    Console.WriteLine(stringTab);
                 }
-            }
-            stringTab[ligne, colonne] = "\n";
-        }
+                if (choix == 2)
+                {
+                    
+                }
+                if (choix == 3)
+                {
+                    
+                }
+            } while (true);
 
-        public void Addition_Matrices(int[,] tab1, int[,] tab2, out int[,] tab3, out bool addition)
-        {
-            int ligne;
-            int colonne;
-            tab1 = new int[ligne, colonne];
-            tab2 = new int[ligne, colonne];
-            addition = true;
-            if (tab1.GetLength(0) == tab2.GetLength(0) && tab1.GetLength(1) == tab2.GetLength(1))
-            {
-                for (int ligne = 0; ligne < tab1.GetLength(0)-1; ligne++)
-                {
-                    for (int colonne = 0; colonne < tab1.GetLength(1)-1; colonne++)
-                    {
-                        tab3[ligne, colonne] += tab1[ligne, colonne] + tab2[ligne, colonne];
-                    }
-                }
-            }
         }
     }
+    
 }
