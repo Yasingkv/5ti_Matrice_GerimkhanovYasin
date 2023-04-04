@@ -1,0 +1,252 @@
+
+Grégoire, Alexandre
+12:24 (il y a 2 minutes)
+À moi
+
+using System;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int[,] Mat1; //matrices n1
+            int[,] Mat2; //matrices n2
+            int[,] Mat3; //matrices n3
+            string Reponse; //variable string qui permet de write
+            bool restart = true; //permet de restart si l'utilisateur veut restart
+            string choix; // contient le choix de quel programme utiliser
+            while (restart)
+            {
+                MethodesDuProjet mesOutils = new MethodesDuProjet();
+
+                Console.WriteLine("Bienvenue dans ce programme d'adiotion et multiplications de matrices");
+                Console.WriteLine("Que voulez vous faire ? \n1. generer une matrice aleatoire \n2. aditionner 2 matrices generer aléatoirement \n3. mutliplier 2 matrices generer aléatoirement");
+                choix = Console.ReadLine();
+                if (choix == "1")
+                {
+                    mesOutils.CreationTab(out Mat1);
+                    mesOutils.stringMatrices(Mat1, out Reponse);
+                    Console.WriteLine(Reponse);
+                }
+                else if (choix == "2")
+                {
+                    Console.WriteLine("Tableaux 1 :");
+                    mesOutils.CreationTab(out Mat1);
+                    mesOutils.stringMatrices(Mat1, out Reponse);
+                    Console.WriteLine(Reponse);
+                    Console.WriteLine("Tableaux 2 :");
+                    mesOutils.CreationTab(out Mat2);
+                    mesOutils.stringMatrices(Mat2, out Reponse);
+                    if (mesOutils.Addition_Matrices(Mat1, Mat2, out Mat3))
+                    {
+                        Console.WriteLine(Reponse + "-------------------------------");
+                        mesOutils.stringMatrices(Mat3, out Reponse);
+                        Console.WriteLine(Reponse);
+                    }
+                    else
+                    {
+                        Console.WriteLine("l'adition n'est pas possible entre 2 tableaux de cette dimensions");
+                    }
+
+                }
+                else if (choix == "3")
+                {
+                    Console.WriteLine("Tableaux 1 :");
+                    mesOutils.CreationTab(out Mat1);
+
+                    mesOutils.stringMatrices(Mat1, out Reponse);
+                    Console.WriteLine(Reponse);
+                    Console.WriteLine("Tableaux 2 :");
+                    mesOutils.CreationTab(out Mat2);
+                    mesOutils.stringMatrices(Mat2, out Reponse);
+                    if (mesOutils.MultiplicationsMatrice(Mat1, Mat2, out Mat3))
+                    {
+                        Console.WriteLine(Reponse + "-------------------------------");
+                        mesOutils.stringMatrices(Mat3, out Reponse);
+                        Console.WriteLine(Reponse);
+                    }
+                    else
+                    {
+                        Console.WriteLine("la multiplications n'est pas possible entre 2 tableaux de cette dimensions");
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Veuillez entrez une valeur valide");
+                }
+                Console.WriteLine("Voulez vous recommencer ? oui = o / non = reste");
+                Reponse = Console.ReadLine();
+                if (Reponse == "o")
+                {
+                    restart = true;
+                }
+                else
+                {
+                    restart = false;
+                }
+            }
+        }
+    }
+}
+
+_____________________________________________________________________________________________________________________________________
+____________________________________________________________________________________________________________________________________
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ConsoleApp1
+{
+    class MethodesDuProjet
+    {
+        /// <summary>
+        /// permet de generer une matrices aléatoire
+        /// </summary>
+        /// <param name="nbLigne">contient le nombre de ligne dans la matrice genere aleatoirement</param>
+        /// <param name="nbColonne">contient le nombre de colonne dans la martice genere aleatoirement</param>
+        /// <param name="MatricesAlea">contient la matrices générer alatoirement</param>
+        public void GenerationTableau(int nbLigne, int nbColonne, out int[,] MatricesAlea)
+        {
+            var Alea = new Random();
+            MatricesAlea = new int[nbLigne, nbColonne];
+            for (int ligne = 0; ligne < nbLigne; ligne++)
+            {
+                for (int colonne = 0; colonne < nbColonne; colonne++)
+                {
+                    MatricesAlea[ligne, colonne] = Alea.Next(0, 20);
+                }
+            }
+        }
+        /// <summary>
+        /// concatene une matrices vers une chaine de caracteres
+        /// </summary>
+        /// <param name="Matrices">la matrices a transformer en string</param>
+        /// <param name="stringTab">le string de la matrices </param>
+        public void stringMatrices(int[,] Matrices, out string stringTab)
+        {
+            stringTab = "";
+            for (int ligne = 0; ligne < Matrices.GetLength(0); ligne++)
+            {
+                for (int colonne = 0; colonne < Matrices.GetLength(1); colonne++)
+                {
+                    if (Matrices[ligne, colonne] < 10)
+                    {
+                        stringTab += Matrices[ligne, colonne] + " |";
+                    }
+                    else
+                    {
+                        stringTab += Matrices[ligne, colonne] + "|";
+                    }
+
+
+                }
+                stringTab += "\n";
+            }
+        }
+        /// <summary>
+        /// permet d'aditionner deux matrices
+        /// </summary>
+        /// <param name="Matrices1">la matrice n1 a additioner</param>
+        /// <param name="Matrices2">la matrice n2 a additioner</param>
+        /// <param name="Matrices3">le resultat de l'adition des deux matrices</param>
+        /// <returns>test si l'additions est possible et renvoie vrai</returns>
+        public bool Addition_Matrices(int[,] Matrices1, int[,] Matrices2, out int[,] Matrices3)
+        {
+            Matrices3 = new int[Matrices1.GetLength(0), Matrices1.GetLength(1)];
+            bool addition = true;
+            if (Matrices1.GetLength(0) == Matrices2.GetLength(0) && Matrices1.GetLength(1) == Matrices2.GetLength(1))
+            {
+
+                Matrices3 = new int[Matrices1.GetLength(0), Matrices1.GetLength(1)];
+                for (int ligne = 0; ligne < Matrices1.GetLength(0); ligne++)
+                {
+                    for (int colonne = 0; colonne < Matrices1.GetLength(1); colonne++)
+                    {
+                        Matrices3[ligne, colonne] = Matrices1[ligne, colonne] + Matrices2[ligne, colonne];
+                    }
+                }
+            }
+            else
+            {
+                addition = false;
+            }
+            return addition;
+
+        }
+        /// <summary>
+        /// permet de multiplier deux matrices
+        /// </summary>
+        /// <param name="Matrices1">la matrice n1 a multiplier</param>
+        /// <param name="Matrices2">la matrice n2 a multiplier</param>
+        /// <param name="matriceMulti">le resultat de la multiplications des deux matrices</param>
+        /// <returns>test si la multiplications est possible et renvoie vrai </returns>
+        public bool MultiplicationsMatrice(int[,] Matrices1, int[,] Matrices2, out int[,] matriceMulti)
+        {
+            bool multiplications = true;
+            matriceMulti = new int[Matrices1.GetLength(0), Matrices2.GetLength(1)];
+            if (Matrices1.GetLength(1) == Matrices2.GetLength(0))
+            {
+                for (int ligne = 0; ligne < Matrices2.GetLength(0); ligne++)
+                {
+                    for (int colonne = 0; colonne < Matrices2.GetLength(1); colonne++)
+                    {
+                        matriceMulti[ligne, colonne] = 0;
+                        for (int i = 0; i < Matrices1.GetLength(1); i++)
+                        {
+                            matriceMulti[ligne, colonne] += Matrices1[ligne, i] * Matrices2[i, colonne];
+                        }
+                    }
+                }
+            }
+            else
+            {
+                multiplications = false;
+            }
+            return multiplications;
+
+
+        }
+        /// <summary>
+        /// permet de verifier l'entree de l'utilisateur si jamais le nombre est bien un reel ou pas
+        /// </summary>
+        /// <param name="question">la question a poser</param>
+        /// <param name="n">le chiffre si jamais la reponse est bien un reel</param>
+        public void LireReel(string question, out int n)
+        {
+            string nUser;
+            Console.Write(question);
+            nUser = Console.ReadLine();
+            while (!int.TryParse(nUser, out n))
+            {
+                Console.WriteLine("Attention ! vous devez taper un nombre réel !");
+                Console.Write(question);
+                nUser = Console.ReadLine();
+            }
+
+        }
+        /// <summary>
+        /// permet de racourcir la demande pour generer une matrices
+        /// </summary>
+        /// <param name="Mat">ressort la matrices demander</param>
+        public void CreationTab(out int[,] Mat)
+        {
+            int nbLi;
+            int nbCol;
+
+            LireReel("Combiens voulez vous de lignes ?\n", out nbLi);
+            Console.WriteLine();
+            LireReel("Combiens voulez vous de colonne ?\n", out nbCol);
+            Console.WriteLine();
+            GenerationTableau(nbLi, nbCol, out Mat);
+
+        }
+    }
+}
